@@ -1,0 +1,45 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+$projbg: #f4f4f4;
+
+
+.project{
+  display: block;
+  width: 90vw;
+  margin: 0.25em auto;
+
+    .projectprogressbar{
+       height: 4em;         
+     }
+
+    .projectinfo{
+      border-radius: 5px;
+      background: $projbg;
+    
+        p{
+          display: inline-block;
+          overflow: hidden;
+          padding: 1.5em 0;
+          width: 9vw;
+          word-wrap: none;
+        }
+        
+        #projnumber{
+          padding: 0.5em 0;
+          font-weight: 700;
+          text-align: center;
+          font-size: 2em;
+        }
+        
+        #projname{
+          width: 45vw;
+        }
+      
+    }
+  
+}
+
+

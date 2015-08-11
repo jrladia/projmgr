@@ -1,0 +1,14 @@
+    <section class = "project">
+        <div class = "projectprogressbar"></div>
+        <div class = "projectinfo">
+            <p id = "projnumber"> <%= @project.projnumber %> </p>
+            <p id = "projname"> <%= @project.projname %> </p>
+            <p id = "scope"> <%= @project.scope %> </p>
+            <p id = "status"> <%= @project.status %> </p>
+            <p id = "stage"> <%= @project.stage %> </p>
+        </div>
+        
+        <%= link_to "Edit", edit_project_path(@project.projnumber) %>
+        <%= link_to "Delete", project_path(@project.projnumber), method: "delete" %>
+        <%= link_to "Return to Projects", root_path %>
+    </section>
