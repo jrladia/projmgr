@@ -1,0 +1,21 @@
+<%= form_for(@project) do |f| %>  
+  <div class="field"> 
+    <%= label_tag "project number" %> 
+    <%= f.text_area :projnumber %> <br>
+    <%= label_tag "project name" %> 
+    <%= f.text_area :projname %> <br>
+    <%= label_tag "location" %> 
+    <%= f.text_area :location %> <br>
+    <%= label_tag "client" %>
+    <%= f.text_area :client %> <br> 
+    <%= label_tag "scope" %>
+    <%= f.text_area :scope %> <br> 
+    <%= label_tag "status" %>
+    <%= f.text_area :status %> <br> 
+    <%= label_tag "stage" %>
+    <%= f.text_area :stage %> <br> 
+  </div> 
+  <div class="actions"> 
+    <%= f.submit "Create" %> 
+  </div> 
+<% end %>

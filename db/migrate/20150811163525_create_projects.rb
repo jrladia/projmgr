@@ -6,7 +6,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string :location
       t.string :client
       t.string :scope
-      t.string :status
+      t.integer :status
       t.string :stage
       t.timestamps null: false
     end

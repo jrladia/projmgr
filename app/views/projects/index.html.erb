@@ -1,0 +1,13 @@
+<% @projects.each do |p|%>
+    <div class = "project">
+        <p id = "projnumber"> <%= p.projnumber %> </p>
+        <p id = "projname"> <%= p.projname %> </p>
+        <p id = "location"> <%= p.location %> </p>
+        <p id = "client"> <%= p.client %> </p>
+        <p id = "scope"> <%= p.scope %> </p>
+        <p id = "status"> <%= p.status %> </p>
+        <p id = "stage"> <%= p.stage %> </p>
+    </div>
+<% end %>
+
+<%= link_to 'Add Project', 'projects/new' %>
