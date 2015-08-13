@@ -1,0 +1,32 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+@import 'variables';
+
+.teammember{
+  float: left;
+  margin: 1em;
+}
+
+#name{
+  text-align: center;
+  margin: 1em auto 2em;
+}
+
+.headshot{
+  border-radius: $border-radius;
+}
+
+.large{
+  @extend .headshot;
+  width: 20vw;
+  height: 20vw;
+}
+
+.small{
+  @extend .headshot;
+  width: 4vw;
+  height: 4vw;
+}

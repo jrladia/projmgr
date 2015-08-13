@@ -1,6 +1,6 @@
-class CreateProjects < ActiveRecord::Migration
+class AddNewColumnsToAll < ActiveRecord::Migration
   def change
-    create_table :projects do |t|
+    change_table :projects do |t|
       t.string :projnumber
       t.string :projname
       t.string :location
@@ -12,6 +12,5 @@ class CreateProjects < ActiveRecord::Migration
       t.string :jc
       t.array :prod
       t.timestamps null: false
-    end
   end
 end

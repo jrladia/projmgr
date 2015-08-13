@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811211751) do
+ActiveRecord::Schema.define(version: 20150812220536) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "projnumber"
@@ -19,23 +19,32 @@ ActiveRecord::Schema.define(version: 20150811211751) do
     t.string   "location"
     t.string   "client"
     t.string   "scope"
-    t.string   "status"
+    t.integer  "status"
     t.string   "stage"
+    t.string   "pm"
+    t.string   "jc"
+    t.string   "prod"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "roles", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "teammember_id"
     t.string   "rolename"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  create_table "team_members", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
+  add_index "roles", ["project_id"], name: "index_roles_on_project_id"
+  add_index "roles", ["teammember_id"], name: "index_roles_on_teammember_id"
+
+  create_table "teammembers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "img"
   end
 
 end

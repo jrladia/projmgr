@@ -1,18 +1,31 @@
-<%= link_to 'Add Project', 'projects/new' %>
 <% @projects.each do |p|%>
-    <section class = "project">
-        <div class = "projectprogressbar"></div>
-        <div class = "projectinfo">
+    <div class = "project">
+        <section class = "projectinfo">
+            <div class = "projectprogressbar"></div>
             <p id = "projnumber"> <%= p.projnumber %> </p>
             <p id = "projname"> <%= p.projname %> </p>
             <p id = "scope"> <%= p.scope %> </p>
             <p id = "status"> <%= p.status %> </p>
-            <p id = "stage"> <%= p.stage %> </p>
-        </div>
-    </section>
-
-    <%= link_to "Show Details", "/projects/#{p.projnumber}/" %>
-
-
+            <p id = "stage"> <%= p.stage %></p>
+            <div class = "projectbackground"></div>
+            
+        </section>
+        
+        <ul class = "teaminfo">
+            <li class = "team pm"> <%= image_tag Teammember.find(p.pm).img, :class => 'headshot small'%> <article><%= Teammember.find(p.pm).first_name %><h5>PM</h5></article></li> 
+            <li class = "team jc"> <%= image_tag Teammember.find(p.jc).img, :class => 'headshot small'%> <article><%= Teammember.find(p.jc).first_name %><h5>JC</h5></article></li>
+        
+            <ul class = "team production">
+                <li>
+                    <% p.prod.gsub(/\W/, " ").split(" ").each  do |x| %>
+                        <%= image_tag Teammember.find_by_first_name(x).img, :class => 'headshot small'%>
+                        <article><%= x %></article>
+                    <% end %>
+                </li>
+            </ul> 
+        </ul>
+        
+        <%= link_to '<button type="button" class="standard-button">Show Details</button>'.html_safe, "/projects/#{p.projnumber}/"%>
+    </div>
 <% end %>
 

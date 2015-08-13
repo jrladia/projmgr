@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(document).ready(function(){
+    $( ".project" ).each(function() {
+    var width = $(this).find("p#status").text();
+    console.log("current width:" + width);
+    width = (width/100)*90;
+    console.log("new width:" + width);
+     $(this).find(".projectprogressbar").css("width", width+"vw");
+    });
+});

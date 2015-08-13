@@ -3,33 +3,56 @@
   They will automatically be included in application.css.
 */
 
-$projbg: #f4f4f4;
-
+@import 'variables';
+@import 'teammembers.css';
 
 .project{
   display: block;
   width: 90vw;
-  margin: 0.25em auto;
+  margin: 0.25em auto 2em;
 
-    .projectprogressbar{
-       height: 4em;         
-     }
-
+    button{
+      margin: 1em 0;
+    }
+        
     .projectinfo{
-      border-radius: 5px;
-      background: $projbg;
+      border-radius: $border-radius;
+      height: $projheight;
+      overflow: hidden;
+      position: relative;
+
+        .projectprogressbar{
+         height: 100%;
+         background: $progbarcolor;
+         position: absolute;
+         top: 0;
+         left: 0;
+         z-index: -1;
+         }
+         
+         .projectbackground{
+         height: 100%;
+         width: 100%;
+         background: $gray;
+         position: absolute;
+         top: 0;
+         left: 0;
+         z-index: -2;
+         }
     
         p{
           display: inline-block;
           overflow: hidden;
           padding: 1.5em 0;
-          width: 9vw;
-          word-wrap: none;
+          width: 12vw;
+          white-space: nowrap;
+          z-index: 100;
         }
         
         #projnumber{
           padding: 0.5em 0;
           font-weight: 700;
+          width: 7vw;
           text-align: center;
           font-size: 2em;
         }
@@ -37,9 +60,50 @@ $projbg: #f4f4f4;
         #projname{
           width: 45vw;
         }
+
       
     }
-  
+    
+    .teaminfo{
+      
+      width: 90vw;
+      overflow: hidden;
+      background: $lightgray;
+      
+      .team{
+        vertical-align: middle;
+        padding: 1em;
+        display: inline;
+        float: left;
+        background: white;
+        border-radius: $border-radius;
+        margin: 1em 0.5em;
+        
+        img{
+          float: left;
+        }
+        
+      }
+      
+      article{
+        float: left;
+        padding: 1.5em 1em;
+        .title{
+          font-weight: bold;
+        }
+      }
+      
+      .pm{
+        margin-left: 1em;
+      }
+      
+      .production{
+        @extend .team;
+        display: inline;
+        
+      }
+    }
+    
+    
 }
-
 

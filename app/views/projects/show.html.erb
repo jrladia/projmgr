@@ -11,4 +11,15 @@
         <%= link_to "Edit", edit_project_path(@project.projnumber) %>
         <%= link_to "Delete", project_path(@project.projnumber), method: "delete" %>
         <%= link_to "Return to Projects", root_path %>
+    
+    <p id = "client"> Client: <%= @project.client %> </p>
+    <p id = "location"> Location: <%= @project.location %> </p>
+    <p id = "pm"> Project Manager: <%= @pm.first_name %></p>
+    <p id = "jc"> Job Captain: <%= @jc.first_name %></p>
+    <p id = "prod"> Production Team: </p> <% @prod.each do |p|%> 
+    <p> <%= p %></p>
+    <% end %>
+
+    
+    
     </section>

@@ -10,6 +10,19 @@
 </head>
 <body>
 
+<header>
+  <div class="container">
+    <nav>
+      <li><h2>Welcome</h2></li>
+      <li><%= link_to '<button type="button" class="standard-button header-button">View Projects</button>'.html_safe, root_path %></li>
+      <li><%= link_to '<button type="button" class="standard-button header-button">Add Project</button>'.html_safe, new_project_path %></li>
+      <li><%= link_to '<button type="button" class="standard-button header-button">View Team Members</button>'.html_safe, index_teammembers_path %></li>
+    </nav>
+  </div>
+</header>
+
+
+
 <%= yield %>
 
 </body>

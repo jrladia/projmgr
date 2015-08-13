@@ -1,0 +1,11 @@
+<div class = "container">
+    <% @teammembers.each do |t| %>
+        <section class = "teammember">
+            <div class = "teammember_info">
+                <%= link_to image_tag(t.img, :class => 'headshot large') .html_safe, edit_teammember_path(t) %>
+                <p id = "name"> <%= t.first_name %> <%= t.last_name %> </p>
+            </div>
+    
+        </section>
+    <% end %>
+</div>

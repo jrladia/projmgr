@@ -3,12 +3,23 @@ Rails.application.routes.draw do
   resources :projects, param: :projnumber
   resources :teammembers
 
+  get 'projects/index' => 'projects#index', as: :index_project
   get 'projects/new' => 'projects#new'
   get 'projects/:projnumber/edit' => 'projects#edit'
   get 'projects/:projnumber' => 'projects#show', as: :show_project
   patch 'projects/:projnumber/' => 'projects#update'
   post 'projects/create' => 'projects#create'
   delete 'projects/:projnumber/' => 'projects#destroy'
+  
+  get 'teammembers/' => 'teammembers#index', as: :index_teammembers
+  get 'teammembers/new' => 'teammembers#new'
+  get 'teammembers/:id/edit' => 'teammembers#edit'
+  get 'teammembers/:id/' => 'teammembers#show', as: :show_teammember
+  patch 'teammembers/:id/' => 'teammembers#update'
+  post 'teammembers/create' => 'teammembers#create'
+  delete 'teammembers/:id/' => 'teammembers#destroy'
+  
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

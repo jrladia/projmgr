@@ -1,4 +1,4 @@
-class CreateProjects < ActiveRecord::Migration
+class RecreateProjects < ActiveRecord::Migration
   def change
     create_table :projects do |t|
       t.string :projnumber
@@ -10,7 +10,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string :stage
       t.string :pm
       t.string :jc
-      t.array :prod
+      t.string :prod
       t.timestamps null: false
     end
   end

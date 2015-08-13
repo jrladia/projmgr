@@ -1,24 +1,78 @@
-<%= form_for(@project) do |f| %>  
-
-  <%= f.error_messages %>
-  <div class="field"> 
+<div class="container">
+  <h1> Adding Project </h1>
   
-    <%= label_tag "project number" %> 
-    <%= f.text_area :projnumber %> <br>
-    <%= label_tag "project name" %> 
-    <%= f.text_area :projname %> <br>
-    <%= label_tag "location" %> 
-    <%= f.text_area :location %> <br>
-    <%= label_tag "client" %>
-    <%= f.text_area :client %> <br> 
-    <%= label_tag "scope" %>
-    <%= f.text_area :scope %> <br> 
-    <%= label_tag "status" %>
-    <%= f.text_area :status %> <br> 
-    <%= label_tag "stage" %>
-    <%= f.text_area :stage %> <br> 
+  <%= form_for(@project) do |f| %>  
+  
+  <!-- <% if @project.errors.any? %>
+    <ul>
+      <% @project.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %> -->
+  
+  <%= f.error_messages :header_message => "Sorry, I can't add your project just yet.",
+    :message => "You'll need to fix the following fields:",
+    :header_tag => :h3 %>
+    
+    <div class="field container"> 
+      <div class="input">
+        <%= label_tag "project number" %> 
+        <%= f.text_field :projnumber %> <br>
+      </div>
+      <div class="input">
+        <%= label_tag "project name" %> 
+        <%= f.text_field :projname %> <br>
+      </div>
+      
+      <div class="input">
+        <%= label_tag "location" %> 
+        <%= f.text_field :location %> <br>
+      </div>
+  
+      <div class="input">
+        <%= label_tag "client" %>
+        <%= f.text_field :client %> <br> 
+      </div>
+      
+      <div class="input">
+        <%= label_tag "scope" %>
+        <%= f.text_field :scope %> <br> 
+      </div>
+      
+      <div class="input">
+        <%= label_tag "status" %>
+        <%= f.text_field :status %> <br> 
+      </div>
+      
+      <div class="input">
+        <%= label_tag "stage" %>
+        <%= f.text_field :stage %> <br> 
+      </div>
+     
+      <div class="input">
+        <%= label_tag "Project Manager" %>
+        <%= f.collection_select(:pm, Teammember.all.sort, :id, :first_name, :include_blank => true )%>
+      </div>
+    
+      <div class="input">
+        <%= label_tag "Job Captain" %>
+        <%= f.collection_select(:jc, Teammember.all.sort, :id, :first_name, :include_blank => true) %><br>
+      </div>
+      
+      
+    <%= label_tag "Production Team" %>
+    
+        <% @allteammembers.each do |t| %>
+          <%= check_box_tag 'project[prod][]', t.first_name, @prod.include?(t.first_name) %>
+          <%= label_tag t.first_name %><br>
+        <% end %>
+      
+  
   </div> 
-  <div class="actions"> 
-    <%= f.submit "Create" %> 
-  </div> 
-<% end %>
+      <div class="actions container"> 
+      <%= f.submit "Create" %> 
+    </div> 
+    
+  <% end %>
+</div>

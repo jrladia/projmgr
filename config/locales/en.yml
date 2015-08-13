@@ -21,3 +21,11 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      project:
+        projnumber: "Project Number"
+        projname: "Project Name"
+        pm: "Project Manager"
+        jc: "Job Captain"
+        prod: "Production Team"
