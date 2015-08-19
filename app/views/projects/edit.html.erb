@@ -1,5 +1,6 @@
 <div class="container">
   <h1> Editing Project </h1>
+  
   <%= form_for(@project) do |f| %>  
   
   <!-- <% if @project.errors.any? %>
@@ -13,56 +14,71 @@
   <%= f.error_messages :header_message => "Sorry, I can't add your project just yet.",
     :message => "You'll need to fix the following fields:",
     :header_tag => :h3 %>
-    
-    <p>You are editing Project Number: <%= @project.projnumber %></p>
-    
-      <div class="input">
-        <%= label_tag "project name" %> 
-        <%= f.text_field :projname %> <br>
-      </div>
-      
-      <div class="input">
-        <%= label_tag "location" %> 
-        <%= f.text_field :location %> <br>
-      </div>
-  
-      <div class="input">
-        <%= label_tag "client" %>
-        <%= f.text_field :client %> <br> 
-      </div>
-      
-      <div class="input">
-        <%= label_tag "scope" %>
-        <%= f.text_field :scope %> <br> 
-      </div>
-      
-      <div class="input">
-        <%= label_tag "status" %>
-        <%= f.text_field :status %> <br> 
-      </div>
-      
-      <div class="input">
-        <%= label_tag "stage" %>
-        <%= f.text_field :stage %> <br> 
-      </div>
-    
-    <%= label_tag "Project Manager" %>
-    <%= f.collection_select(:pm, Teammember.all.sort, :id, :first_name) %>
-    
-    <%= label_tag "Job Captain" %>
-    <%= f.collection_select(:jc, Teammember.all.sort, :id, :first_name) %>
-  
-    <% @allteammembers.each do |t| %>
-             
-          <%= check_box_tag 'project[prod][]', t.first_name, @prod.include?(t.first_name), {:checked => @active} %>
-          <%= label_tag t.first_name %><br>
+    <div class="field"> 
+      <section class = "projectinfo half">
+        <div class="input">
+          <%= label_tag "project number", "Project Number", :class => "formlabel"%> 
+          <%= f.text_field :projnumber %> <br>
+        </div>
+        <div class="input">
+          <%= label_tag "project name", "Project Name", :class => "formlabel" %> 
+          <%= f.text_field :projname %> <br>
+        </div>
         
-    <% end %>
+        <div class="input">
+          <%= label_tag "location", nil, :class => "formlabel" %> 
+          <%= f.text_field :location %> <br>
+        </div>
     
-  </div> 
+        <div class="input">
+          <%= label_tag "client", nil, :class => "formlabel" %>
+          <%= f.text_field :client %> <br> 
+        </div>
+        
+        <div class="input">
+          <%= label_tag "scope", nil, :class => "formlabel" %>
+          <%= f.text_field :scope %> <br> 
+        </div>
+        
+        <div class="input">
+          <%= label_tag "status", nil, :class => "formlabel" %>
+          <%= f.text_field :status %> <br> 
+        </div>
+        
+         <div class="input">
+          <%= label_tag "stage", nil, :class => "formlabel" %>
+          <%= f.select(:stage, @stages)%><br>
+        </div>
+      </section>
+    
+    <section class = "teaminfo half">
+      <div class="input">
+        <%= label_tag "Project Manager", "Project Manager", :class => "formlabel"  %>
+        <%= f.collection_select(:pm, Teammember.all.sort, :id, :first_name, :include_blank => true )%>
+      </div>
+    
+      <div class="input">
+        <%= label_tag "Job Captain", "Job Captain", :class => "formlabel"  %>
+        <%= f.collection_select(:jc, Teammember.all.sort, :id, :first_name, :include_blank => true) %><br>
+      </div>
+      
+      <div class = "production_input"> 
+        <%= label_tag "Production Team", "Production Team", :class => "formlabel"   %>
+        
+        <% @allteammembers.each do |t| %>
+             <div class="checkselection", style = "background: <%=t.bgcolour%>">    
+              <%= check_box_tag 'project[prod][]', t.first_name, @prod.include?(t.first_name), {:checked => @active} %>
+              <%= label_tag t.first_name %><br>
+            </div>
+            
+        <% end %>
+      </div>
+    </section>
       <div class="actions container"> 
       <%= f.submit "Submit Changes" %> 
     </div> 
     
   <% end %>
+
+  </div>
 </div>

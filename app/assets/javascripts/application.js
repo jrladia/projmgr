@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery.turbolinks
+
 $(document).ready(function(){
     $( ".project" ).each(function() {
     var width = $(this).find("p#status").text();

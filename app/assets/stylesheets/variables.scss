@@ -1,6 +1,20 @@
 $lightgray: #f4f4f4;
 $gray: #d6d8d7;
+$grayborder: 1px solid $gray;
+$darkgray: #626366;
+
 $error_red: #EA636D;
-$border-radius: 5px;
 $progbarcolor: #6ff7af;
+
+$border-radius: 5px;
+
 $projheight: 4em;
+$headheight: 2em;
+$projtableheight: 12em;
+$fullwidth: 90vw;
+
+@mixin topline {
+    margin-bottom: 0;
+    border-bottom: $grayborder;
+    padding-bottom: 0.5em;
+}

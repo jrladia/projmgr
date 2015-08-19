@@ -1,47 +1,75 @@
 @import 'variables';
 
-label{
+.header-button{
   float: left;
-  width: 10vw;
-  font-weight: bold;
-  padding: 1em 1em;
-  vertical-align: middle;
 }
 
-div.input{
+
+.new_project{
+}
+
+
+.field div.input{
   margin: 1em 2em 1em 0;
+  width: 45vw;
+  
+  .formlabel{
+    height: 2em;
+    width: 10em;
+    display: inline-block;
+    margin-right: 2em;
+    font-weight: bold;
+    padding: 1em 0;
+  }
+  
+  input{
+    border: none;
+    outline: none;
+    background: $gray;
+    border-radius: $border-radius;
+    font-size: 1em;
+    padding: 1em;
+    width: 25vw;
+    font-family: 'Proxima Nova', Helvetica, sans-serif;
+  }
+  
+  select{
+    border: 1px solid $gray;
+    background: $lightgray;
+    border-radius: $border-radius;
+    font-size: 1em;
+    padding: 1em;
+    height: 3em;
+    width: 25vw;
+    font-family: 'Proxima Nova', Helvetica, sans-serif;
+  }
+  
 }
 
-input{
-  border: none;
-  outline: none;
-  background: $gray;
-  border-radius: $border-radius;
-  font-size: 1em;
-  padding: 1em;
-  clear: both;
-  width: 30vw;
-  font-family: 'Proxima Nova', Helvetica, sans-serif;
-}
-
-.errorExplanation{
-  padding: 1em;
-  background: $error_red;
-  border: 1px solid red;
-  width: 90vw;
-  margin: 2em auto;
-}
-
-.errorExplanation li{
-    margin-left: 1em;
-  list-style-type: circle;
-}
-
-
-.field_with_errors input{
-  background: $error_red;
-}
-
+  .teaminfo div.production_input{
+    border-top: 1px solid $gray;
+      .formlabel{
+        display: block;
+      }
+      .checkselection{
+        width:20%;
+        display: inline-block;
+        height: 2em;
+        border-radius: $border-radius;
+        padding: 0.25em;
+        font-size: 1em;
+        margin: 0.5em 0.5em 0.5em 0;
+        background: $lightgray;
+      }
+      
+      input[type="checkbox"]{
+        height: 2em;
+        background: red;
+      }
+      
+  }
+  
+  
 textarea:focus, text:focus, input:focus, button:focus {
   outline: none;
 }
@@ -66,6 +94,95 @@ textarea:focus, text:focus, input:focus, button:focus {
   text-decoration: none;
 }
 
-.header-button{
-  float: left;
+.inner-button{
+   -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  border: none;
+  font-family: "Proxima Nova", sans-serif;
+  color: #363636;
+  font-size: 1em;
+  background: $gray;
+  padding: 0.5em;
+  text-decoration: none;
+  cursor: pointer;
+  margin-bottom: 0.5em;
+}
+
+.inner-button:hover{
+  background: $progbarcolor;
+  text-decoration: none;
+}
+
+.errorExplanation{
+  padding: 1em;
+  background: $error_red;
+  border: 1px solid red;
+  width: 90vw;
+  margin: 2em auto;
+}
+
+.errorExplanation li{
+  margin-left: 1em;
+  list-style-type: circle;
+}
+
+
+.field_with_errors input{
+  background: $error_red;
+}
+
+
+
+//edit, delete, show buttons
+.buttons{
+  
+  background: $darkgray;
+
+  li{
+    display: inline;
+  }
+  
+  .editbutton{
+    width: 5em;
+    height: 5em;
+    background: url('http://www.republicarchitecture.ca/images/projmgr/editbuttons.png');
+    background-size: 15em 10em;
+    border: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999em;
+    cursor: pointer;
+    margin: 0.5em;
+  }
+  
+  .show{
+    @extend .editbutton;
+    background-position: 0 5em;
+  }
+  
+  .show:hover{
+    @extend .editbutton;
+    background-position: 0 0;
+  }
+  
+  .edit{
+    @extend .editbutton;
+    background-position: -5em 5em;
+  }
+  
+  .edit:hover{
+    @extend .editbutton;
+    background-position: -5em 0;
+  }
+  
+  .delete{
+    @extend .editbutton;
+    background-position: -10em 5em;
+  }
+  
+  .delete:hover{
+    @extend .editbutton;
+    background-position: -10em 0;
+  }
 }

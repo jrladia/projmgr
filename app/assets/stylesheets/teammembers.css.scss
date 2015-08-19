@@ -4,19 +4,101 @@
 */
 
 @import 'variables';
+@import 'forms.css';
+@import 'projects.css';
 
 .teammember{
-  float: left;
-  margin: 1em;
-}
+  margin-bottom: 4em;
+  
+  .teammmemberinfo{
+    position: relative;
+    border-radius: $border-radius;
+  
+    p{
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      z-index: 100;
+      font-size: 2em;
+      padding: 0.5em 0;
+      text-align: center;
+      font-weight: 500;
+      margin-right: 0.25em;
+    }
+    
+    #firstname{
+      margin-left: 10vw;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    
+  
+    #numproj{
+      float: right;
+      margin-right: 5vw;
+      font-weight: 700;
+    }
+  }
+ 
+  
+  .projectinfo{
+      height: inherit;
 
-#name{
-  text-align: center;
-  margin: 1em auto 2em;
+        .project{
+          border-radius: $border-radius;
+          position: relative;
+          width: $fullwidth;
+          margin-bottom: 0.25em;
+
+        
+          .projectprogressbar{
+            background: $progbarcolor;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+          }
+             
+          .projectbackground{
+            height: 100%;
+            width: 100%;
+            background: $lightgray;
+            border-bottom: 1px solid $gray;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -2;
+          }
+        
+          p{
+            font-size: 1em;
+            display: inline-block;
+            overflow: hidden;
+            width: 12vw;
+            white-space: nowrap;
+            z-index: 100;
+            padding: 0.5em;
+          }
+            
+          #projnumber{
+            font-weight: 700;
+            width: 7vw;
+            text-align: center;
+            font-size: 1em;
+          }
+            
+          #projname{
+            width: 35vw;
+          }
+      }
+  }
+
 }
 
 .headshot{
   border-radius: $border-radius;
+  outline: none;
+
 }
 
 .large{
@@ -25,8 +107,18 @@
   height: 20vw;
 }
 
+.medium{
+  @extend .headshot;
+  width: 10vw;
+  height: 10vw;
+}
+
 .small{
   @extend .headshot;
   width: 4vw;
   height: 4vw;
+  border: 0;
+  outline: none;
+  vertical-align: middle;
+  background: $gray;
 }

@@ -69,8 +69,10 @@ table {
 
 
 h1{
+    padding-top: $headheight*2.5;
     font-size: 2em;
     font-weight: 700;
+    @include topline;
 }
 
 h2{
@@ -105,25 +107,33 @@ html{
     margin: auto;
 }
 
-
 header{
-  height: 2em 0 3em;
+  height: $headheight;
   width: 100vw;
   color: white;
-  padding: 1em 0;
+  padding: 1em 0 1.6em;
   background-image: linear-gradient(to right, #2a79ff, #b300bf);
   margin-bottom: 4em;
-}
-
-header nav{
-  list-style: none;
-}
-
-header nav li{
+  position: fixed;
+  z-index: 9999;
+  
+  nav{
+      list-style: none;
+    }
+    
+nav li{
   display: inline-block;
   padding-right: 1em;
   vertical-align: middle;
+    }
+    
+    #logo{
+        font-size: 1.5em;
+        font-weight: 100;
+    }
 }
+
+
 
 .gradient{
   @extend header;
@@ -133,6 +143,54 @@ header nav li{
     );
 }
 
+.half{
+  width: ($fullwidth/2) - 4vw;
+  float: left;
+  margin-right: 2vw;
+}
 
+.sort{
+    @include topline;
+    padding: 1em 0;
+    margin-bottom: 4em;
 
+    h5{
+        display: inline;
+        margin-right: 1em;
+    }
+    
+    li{
+        margin-right: 0.5em;
+        display: inline;
+    }
+}
 
+.options{
+    @extend .sort;
+}
+
+.buttons{
+    margin-right: 2em;
+    float: right;
+    
+    li{
+        padding: 0;
+        height: 2em;
+        margin-bottom: 0.5em;
+    }
+}
+
+.clear{
+    clear:both;
+    width: 100vw;
+}
+
+footer{
+    clear:both;
+    display: block;
+    border-top: 1px solid $gray;
+    background: $lightgray;
+    height: 12em;
+    width: 100vw;
+    margin-top: $headheight*4;
+}

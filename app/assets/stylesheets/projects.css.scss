@@ -5,17 +5,20 @@
 
 @import 'variables';
 @import 'teammembers.css';
+@import 'forms.css';
 
-.project{
+// project index
+.project, .teammember{
   display: block;
   width: 90vw;
   margin: 0.25em auto 2em;
+  overflow: hidden;
 
     button{
       margin: 1em 0;
     }
         
-    .projectinfo{
+    .projectinfo, .teammemberinfo{
       border-radius: $border-radius;
       height: $projheight;
       overflow: hidden;
@@ -23,7 +26,7 @@
 
         .projectprogressbar{
          height: 100%;
-         background: $progbarcolor;
+         opacity: 0.75;
          position: absolute;
          top: 0;
          left: 0;
@@ -87,10 +90,14 @@
       
       article{
         float: left;
-        padding: 1.5em 1em;
+        padding: 0 0.5em;
         .title{
           font-weight: bold;
         }
+      }
+      
+      .pm, .jc{
+        width: 10vw;
       }
       
       .pm{
@@ -104,6 +111,71 @@
       }
     }
     
-    
+    //show, edit, delete buttons
+    .buttons{
+      margin: 1em 1em 0 0;
+      height: 100%;
+      padding: 0.5em;
+      border-radius: $border-radius;
+    }
 }
 
+
+// project show page
+.showproject{
+  
+  h4{
+    padding: 0.5em;
+    border-top: 0;
+    
+  }
+  
+  .project, .team_assignments{
+    width: $fullwidth;
+    display: inline-block;
+    vertical-align: top;
+    padding-bottom: 4em;
+    
+    
+    th{
+      text-align: left;
+      border-top: none;
+      border-bottom: 2px solid $gray;
+    }
+    
+    tr{
+      width: $fullwidth;
+      
+      border-bottom: $grayborder;
+      
+      .category{
+        border-right: $grayborder;
+        width: $fullwidth/8;
+        
+        h5{
+          padding: 1em;
+        }
+      }
+      
+      td{
+        width: ($fullwidth / 8) * 7;
+        
+        p{
+          padding: 1em;
+        }
+      }
+    }
+    
+    tr:nth-child(even){
+      background: $lightgray;
+    }
+    
+  }
+  
+  .project{
+    margin: 0;
+    margin-right: $fullwidth / 100;
+    
+    
+  }
+}

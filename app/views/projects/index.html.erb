@@ -1,31 +1,71 @@
-<% @projects.each do |p|%>
+<div class="container">
+<h1>Projects by <%= @description %></h1>
+<ul class = "sort">
+        <h5> Sort Options </h5>
+        <li><%= link_to '<button type="button" class="standard-button">Project Number 000 – 999</button>'.html_safe, action: 'index', order: 'pnum_asc', desc:'Project Number – Ascending' %></li>
+        <li><%= link_to '<button type="button" class="standard-button">Project Number 999 – 000</button>'.html_safe, action: 'index', order: 'pnum_desc', desc:'Project Number – Descending' %></li>
+        <li><%= link_to '<button type="button" class="standard-button">Project Name A–Z</button>'.html_safe, action: 'index', order: 'pname_asc', desc:'Project Name A-Z' %></li>
+        <li><%= link_to '<button type="button" class="standard-button">Project Name Z–A</button>'.html_safe, action: 'index', order: 'pname_desc', desc:'Project Name Z–A' %></li>
+        <li><%= link_to '<button type="button" class="standard-button">Stage</button>'.html_safe, action: 'index', order: 'stage', desc:'Stage' %></li>
+        <li><%= link_to '<button type="button" class="standard-button">Project Manager A–Z</button>'.html_safe, action: 'index', order: 'pm', desc:'Project Manager' %></li>
+        <li><%= link_to '<button type="button" class="standard-button">Job Captain A–Z</button>'.html_safe, action: 'index', order: 'jc', desc:'Job Captain' %></li>
+        <li><%= link_to '<button type="button" class="standard-button">Number of Team Members</button>'.html_safe, action: 'index', order: 'num_team', desc:'Number of Team Members' %></li>
+    </ul>
+
+<% @projectssorted.each do |p|%>
     <div class = "project">
         <section class = "projectinfo">
-            <div class = "projectprogressbar"></div>
+            <div class = "projectprogressbar" style = "background: <%= p.bgcolour %>;"></div>
             <p id = "projnumber"> <%= p.projnumber %> </p>
             <p id = "projname"> <%= p.projname %> </p>
             <p id = "scope"> <%= p.scope %> </p>
             <p id = "status"> <%= p.status %> </p>
             <p id = "stage"> <%= p.stage %></p>
-            <div class = "projectbackground"></div>
+            <div class = "projectbackground" style = "background: <%= p.bgcolour %>; opacity: 0.25;"></div>
             
         </section>
         
         <ul class = "teaminfo">
-            <li class = "team pm"> <%= image_tag Teammember.find(p.pm).img, :class => 'headshot small'%> <article><%= Teammember.find(p.pm).first_name %><h5>PM</h5></article></li> 
-            <li class = "team jc"> <%= image_tag Teammember.find(p.jc).img, :class => 'headshot small'%> <article><%= Teammember.find(p.jc).first_name %><h5>JC</h5></article></li>
-        
+            <li class = "team pm"> 
+                <% unless p.pm == "" %> 
+                    <%= image_tag Teammember.find(p.pm).img, :class => 'headshot small'%> <article><%= Teammember.find(p.pm).first_name %>
+                <% else %>
+                    <img class="headshot small"><article>?
+                <% end %>
+                <h5>PM</h5></article>
+            </li>
+            
+            
+            <li class = "team jc"> 
+                <% unless p.jc == "" %>
+                    <%= image_tag Teammember.find(p.jc).img, :class => 'headshot small'%> <article><%= Teammember.find(p.jc).first_name %>
+                <% else %>
+                     <img class="headshot small"><article>N/A
+                <% end %>
+                <h5>JC</h5></article>
+            </li>
+            
             <ul class = "team production">
                 <li>
-                    <% p.prod.gsub(/\W/, " ").split(" ").each  do |x| %>
-                        <%= image_tag Teammember.find_by_first_name(x).img, :class => 'headshot small'%>
-                        <article><%= x %></article>
+                    <% unless p.prod.nil? %>
+                        <% p.prod.gsub(/\W/, " ").split(" ").each  do |x| %>
+                            <%= image_tag Teammember.find_by_first_name(x).img, :class => 'headshot small'%>
+                            <article><%= x %></article>
+                        <% end %>
+                    <% else %>
+                         <img class="headshot small"><article>N/A
                     <% end %>
                 </li>
             </ul> 
+            
+            <ul class = "buttons">
+                 <li><%= link_to '<button type="button" class="show editbutton">Show Details</button>'.html_safe, "/projects/#{p.projnumber}/"%> </li>
+                 <li> <%= link_to '<button type="button" class="edit editbutton">Edit</button>'.html_safe, "/projects/#{p.projnumber}/edit/"%></li>
+                 <li><%= link_to '<button type="button" class="delete editbutton">Delete Project</button>'.html_safe, project_path(p.projnumber), method: "delete"%></li>
+            </li>
         </ul>
         
-        <%= link_to '<button type="button" class="standard-button">Show Details</button>'.html_safe, "/projects/#{p.projnumber}/"%>
+       
     </div>
 <% end %>
-
+</div>

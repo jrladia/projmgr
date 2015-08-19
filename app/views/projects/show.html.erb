@@ -1,25 +1,88 @@
-    <section class = "project">
-        <div class = "projectprogressbar"></div>
-        <div class = "projectinfo">
-            <p id = "projnumber"> <%= @project.projnumber %> </p>
-            <p id = "projname"> <%= @project.projname %> </p>
-            <p id = "scope"> <%= @project.scope %> </p>
-            <p id = "status"> <%= @project.status %> </p>
-            <p id = "stage"> <%= @project.stage %> </p>
-        </div>
+<div class = "showproject container">    
+    <h1><%= @project.projnumber %> <%= @project.projname %></h1>
+    <ul class = "options">
+       <li><%= link_to '<button type="button" class="standard-button">Edit</button>'.html_safe, edit_project_path(@project.projnumber) %></li>
+       <li><%= link_to '<button type="button" class="standard-button">Delete</button>'.html_safe, project_path(@project.projnumber), method: "delete"%></li>
+       <li> <%= link_to '<button type="button" class="standard-button">Return to Projects</button>'.html_safe, root_path %></li>
+    </ul>
+    
+    <section class = "projectinfo container">
         
-        <%= link_to "Edit", edit_project_path(@project.projnumber) %>
-        <%= link_to "Delete", project_path(@project.projnumber), method: "delete" %>
-        <%= link_to "Return to Projects", root_path %>
-    
-    <p id = "client"> Client: <%= @project.client %> </p>
-    <p id = "location"> Location: <%= @project.location %> </p>
-    <p id = "pm"> Project Manager: <%= @pm.first_name %></p>
-    <p id = "jc"> Job Captain: <%= @jc.first_name %></p>
-    <p id = "prod"> Production Team: </p> <% @prod.each do |p|%> 
-    <p> <%= p %></p>
-    <% end %>
-
-    
-    
-    </section>
+        
+        <table class = "project">
+            <th colspan = 2><h4>Basic Information</h4></th>
+            <tr id = "scope">
+                <td class = "category"><h5>Scope</h5></td>
+                <td><p><%= @project.scope %></p></td>
+            </tr>
+            
+            <tr id = "status">
+                <td class = "category" ><h5>Status</h5></td>
+                <td><p><%= @project.status %></p></td>
+            </tr>
+            
+            <tr id = "stage">
+                <td class = "category" ><h5>Stage</h5></td>
+                <td><p><%= @project.stage %></p></td>
+            </tr>
+            
+            <tr id = "client">
+                <td class = "category" ><h5>Client</h5></td>
+                <td><p><%= @project.client %></p></td>
+            </tr>
+            
+            <tr id = "location">
+                <td class = "category" ><h5>Location</h5></td>
+                <td><p><%= @project.location %></p></td>
+            </tr>
+        </table>
+        
+        
+        <table class = "team_assignments">
+            <th colspan = 2><h4>Team Assignments</h4></th>
+            <tr id = "pm">
+                <td class = "category"><h5>Project Manager</h5></td>
+                <td><p>
+                    <% unless @pm.nil? %>
+                        <%= image_tag Teammember.find(@project.pm).img, :class => 'headshot small'%>
+                        <%= @pm.first_name %>
+                    <% else %>
+                        <img class = "headshot small"></img>
+                        ?
+                    <% end %>
+                    </p>
+                </td>
+            </tr>
+            
+            <tr id = "jc">
+                <td class = "category"><h5>Job Captain</h5></td>
+                <td><p>
+                    <% unless @jc.nil? %>
+                        <%= image_tag Teammember.find(@project.jc).img, :class => 'headshot small'%>
+                        <%= @jc.first_name %>
+                    <% else %>
+                        <img class = "headshot small"/>
+                        N/A
+                    <% end %>
+                    </p>
+                </td>
+            </tr>
+            
+            <tr id = "prod">
+                <td class = "category"><h5>Production Team</h5></td>
+                <td><p>
+                   <% unless @prod.nil? || @prod == ""%>
+                        <% @prod.to_s.gsub(/\W/, " ").split(" ").each  do |x| %>
+                            <%= image_tag Teammember.find_by_first_name(x).img, :class => 'headshot small'%>
+                            <%= x %>
+                        <% end %>
+                   <% else %>
+                        <img class = "headshot small"/>
+                        N/A
+                    <% end %>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </section>    
+</div>

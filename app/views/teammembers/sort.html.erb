@@ -1,0 +1,29 @@
+<div class = "container">
+    <h1>Team Members</h1>
+    
+    <%= link_to 'Ascending By First Name', ) %>
+    
+    <% @teamsorted.each do |t| %>
+        <div class = "teammember">
+            <section class = "teammmemberinfo" style="background: url(<%= t.img %>) <%= t.bgcolour %> no-repeat top left; background-size: 8em; background-position: 0% 50%">
+                <p id = "firstname"> <%= t.first_name %> </p>
+                <p id = "lastname"> <%= t.last_name %> </p>
+                <p id = "numproj"> <%= t.projects.length %> </p>
+            </section>
+            
+            <section class = "projectinfo">
+                <% t.projects.each do |p| %>
+                    <div class = "project">
+                        <div class = "projectprogressbar" style = "background: <%= t.bgcolour %>; opacity: 0.5"></div>
+                        <p id = "projnumber"> <%= p.projnumber %> </p>
+                        <p id = "projname"> <%= p.projname %> </p>
+                        <p id = "scope"> <%= p.scope %> </p>
+                        <p id = "status"> <%= p.status %> </p>
+                        <p id = "stage"> <%= p.stage %></p>
+                        <div class = "projectbackground"></div>
+                    </div>
+                <% end %>
+            </section>
+        </div>
+    <% end %>
+</div>
