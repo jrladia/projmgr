@@ -35,6 +35,21 @@ class TeammembersController < ApplicationController
             end
     end
 
+
+    def new
+        @teammember = Teammember.new
+    end
+    
+    def create
+        @teammember = Teammember.new(teammember_params)  #create new team member, with all columns 
+        
+        if @teammember.save
+            redirect_to '/teammembers'
+        else
+            render 'new'
+        end
+    end
+    
     def edit
         @teammember = Teammember.find(params[:id])
     end

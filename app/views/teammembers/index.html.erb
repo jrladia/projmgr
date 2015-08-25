@@ -10,6 +10,13 @@
         <li><%= link_to '<button type="button" class="standard-button">Least Projects</button>'.html_safe, action: 'index', order: 'p_asc', desc:'Least Projects' %></li>
         <li><%= link_to '<button type="button" class="standard-button">Order of Hire</button>'.html_safe, action: 'index', order: 'default', desc:'Order of Hire' %></li>
     </ul>
+    <div class = "teammember heading">
+        <section class = "teammmemberinfo">
+            <p id = "firstname"> Name </p>
+            <p id = "lastname">  </p>
+            <p id = "numproj"> # Projects </p>
+        </section>
+    </div>
     <% @teamsorted.each do |t| %>
         <div class = "teammember">
             <section class = "teammmemberinfo" style="background: url(<%= t.img %>) <%= t.bgcolour %> no-repeat top left; background-size: 8em; background-position: 0% 50%">
@@ -28,6 +35,11 @@
                         <p id = "status"> <%= p.status %> </p>
                         <p id = "stage"> <%= p.stage %></p>
                         <div class = "projectbackground"></div>
+                        <ul class = "buttons">
+                            <li><%= link_to '<button type="button" class="show editbutton">Show Details</button>'.html_safe, "/projects/#{p.projnumber}/"%> </li>
+                            <li> <%= link_to '<button type="button" class="edit editbutton">Edit</button>'.html_safe, "/projects/#{p.projnumber}/edit/"%></li>
+                            <li><%= link_to '<button type="button" class="delete editbutton">Delete Project</button>'.html_safe, project_path(p.projnumber), method: "delete"%></li>
+                        </ul>
                     </div>
                 <% end %>
             </section>

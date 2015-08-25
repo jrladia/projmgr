@@ -1,28 +1,28 @@
 class ProjectsController < ApplicationController
     
     @@stages = 
-        {   "Pre-Design" => "#F44545", 
-            "Pre-Design: Feasibility" => "#A35252",
-            "Pre-Design: Building Condition Assessment" => "#e7303a",
-            "Pre-Design: Programming" => "#B54D4D",
-            "Design" => "#FFA300",
-            "Design: Schematic Design" => "#E27727",
-            "Design: Design Development" => "#FFAA3B",
-            "Construction Documents" => "#f5dc1e",
-            "Construction Documents: Specification" => "#F9F080",
-            "Construction Documents: Code / Constructibility Reviews" => "#DBD47D",
-            "Tender" => "green",
-            "Contract Administration" => "#419DD6",
-            "Close-Out" => "#6541D6",
-            "Close-Out: Commissioning" => "#4B28B5",
-            "Close-Out: Warranty" => "#9928B5",
-            "Close-Out: Submittals" => "#C451E0",
-            "Close-Out: Deficiencies" => "#DE56E2",
-            "Close-Out: Final Progress Claims" => "#9A5DBA",
-            "Close-Out: As-Builts" => "#D6A6E8",
-            "Overall" => "#f33a87",
+        {   "Pre-Design" => "#D8140B", 
+            "Pre-Design: Feasibility" => "#FC340C",
+            "Pre-Design: Building Condition Assessment" => "#FA5619",
+            "Pre-Design: Programming" => "#F77925",
+            "Design" => "#F49B31",
+            "Design: Schematic Design" => "#F7B037",
+            "Design: Design Development" => "#FBC43C",
+            "Construction Documents" => "#FED942",
+            "Construction Documents: Specification" => "#DDD440",
+            "Construction Documents: Code / Constructibility Reviews" => "#BCD03E",
+            "Tender" => "#9BCB3C",
+            "Contract Administration" => "#2B7ED8",
+            "Close-Out" => "#6418C6",
+            "Close-Out: Commissioning" => "#7D16C7",
+            "Close-Out: Warranty" => "#9514C7",
+            "Close-Out: Submittals" => "#AE12C8",
+            "Close-Out: Deficiencies" => "#C60FC9",
+            "Close-Out: Final Progress Claims" => "#DE0DC9",
+            "Close-Out: As-Builts" => "#F70BCA",
+            "Overall" => "#B2667C",
             "Hours" => "olive",
-            "Other" => "gray"
+            "Other" => "#7C2E45"
         }
 
 
@@ -33,6 +33,11 @@ class ProjectsController < ApplicationController
         @projectssorted = sort(@projects, @sortmethod)
         @description = params[:desc]
         @description ||= "Project Number – Ascending"
+        @stages = @@stages
+    end
+    
+    def test
+        index
     end
     
     def sort (projects, sort_order)
@@ -73,6 +78,7 @@ class ProjectsController < ApplicationController
         @teammembers = []                   #array of team members
         @prod=[]                            #array of production team 
         @stages = @@stages.keys
+        @allstages = []
         
         #loop through team member objects to get first names of each person
         #store in teammmembers array
@@ -88,10 +94,15 @@ class ProjectsController < ApplicationController
     def create
         @project = Project.new(project_params)  #create new project, with all columns 
         @allteammembers = Teammember.all        #list all team members from db
-        @teammembers = @project.teammembers     #initialize association with pro
+        @teammembers = @project.teammembers     #initialize association with prod
         @prod=[]
-
+        @stages = @@stages.keys
+        @allstages = params[:allstages]
+        @stagesstring = ""
+        
         @project.bgcolour = getColour(@project)
+        @team = @project.prod #applying changes to @team
+        @project.update_attribute(:allstages, @allstages)
         
         if @project.save
             
@@ -100,6 +111,7 @@ class ProjectsController < ApplicationController
             @prod = getteam(@project)
             
             @project.bgcolour = getColour(@project)
+            @project.allstages = @allstages
             
             unless @pm == @jc || @pm == nil
                 @teammembers << @pm
@@ -109,7 +121,7 @@ class ProjectsController < ApplicationController
                 @teammembers << @jc
             end
             
-            unless @prod == [] || @prod == ""
+             unless @prod == [] || @prod == ""
                 @prod.each do |p|
                     current = Teammember.find_by_first_name(p)
                     if (current != @pm) && (current != @jc)
@@ -117,6 +129,7 @@ class ProjectsController < ApplicationController
                     end
                 end
             end
+            
         
             redirect_to root_path
         else
@@ -142,16 +155,21 @@ class ProjectsController < ApplicationController
     
     def update
         @project = Project.find(params[:projnumber])
-        
-        
-        
+                
         if @project.update_attributes(project_params)
             @project.bgcolour = nil
             @teammembers = @project.teammembers
             @teammembers.clear
+            @allstages = @project.allstages
+            @allstages = ""
+            
 
             @team = @project.prod #applying changes to @team
             @prod=[] # array for after splitting the names
+
+            @allstages = params[:allstages]
+            
+            @project.update_attribute(:allstages, @allstages)
             
             #apply pm and jc changes
             @pm = findrole(@project, "pm")
@@ -212,13 +230,26 @@ class ProjectsController < ApplicationController
         team = project.prod
         teamarray = []
             
-        unless team == nil    
+        unless team == nil || team == ""  
             team.gsub!(/\W/, " ")
             teamarray = team.split(" ")
             return teamarray
         else
             return ""
         end
+    end
+    
+    def getStages(project)
+        
+        stringstage ||= ""
+        stages = []
+        stages ||= project.allstages.to_s.split(",")
+        
+        stages.each do |x|
+            stringstage << x
+        end
+        
+        return stringstage
     end
     
     def getColour(project)
@@ -228,7 +259,7 @@ class ProjectsController < ApplicationController
     private
     
         def project_params
-            params.require(:project).permit(:projnumber, :projname, :location, :client, :scope, :status, :stage, :pm, :jc, :bgcolour, prod: [])
+            params.require(:project).permit(:projnumber, :projname, :location, :client, :scope, :status, :stage, :allstages, :pm, :jc, :bgcolour, prod: [])
         end
 
 end

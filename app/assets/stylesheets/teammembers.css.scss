@@ -8,7 +8,7 @@
 @import 'projects.css';
 
 .teammember{
-  margin-bottom: 4em;
+  margin-bottom: 3em;
   
   .teammmemberinfo{
     position: relative;
@@ -32,11 +32,11 @@
       font-weight: 700;
     }
     
-  
     #numproj{
       float: right;
       margin-right: 5vw;
       font-weight: 700;
+      text-align: center;
     }
   }
  
@@ -45,7 +45,6 @@
       height: inherit;
 
         .project{
-          border-radius: $border-radius;
           position: relative;
           width: $fullwidth;
           margin-bottom: 0.25em;
@@ -88,11 +87,57 @@
           }
             
           #projname{
-            width: 35vw;
+            width: 25vw;
+          }
+          
+          #stage{
+            width: 15vw;
+          }
+          
+          .buttons{
+            margin: 0.3em 0.3em 0 0;
+            vertical-align: middle;
+            .editbutton{
+              width: 2em;
+              height: 2em;
+              background: url('http://www.republicarchitecture.ca/images/projmgr/editbuttons.png');
+              background-size: 6em 4em;
+              padding: 0;
+              margin: 0 0.15em 0 0;
+            }
+            
+            .show{
+              @extend .editbutton;
+              background-position: 0 0;
+            }
+            
+            .show:hover{
+              @extend .editbutton;
+              background-position: 0 2em;
+            }
+            
+            .edit{
+              @extend .editbutton;
+              background-position: -2em 0;
+            }
+            
+            .edit:hover{
+              @extend .editbutton;
+              background-position: -2em 2em;
+            }
+            
+            .delete{
+              @extend .editbutton;
+              background-position: -4em 0;
+            }
+            
+            .delete:hover{
+              @extend .editbutton;
+              background-position: -4em 2em;
+            }
           }
       }
   }
-
 }
 
 .headshot{

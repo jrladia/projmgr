@@ -17,11 +17,29 @@
 //= require jquery.turbolinks
 
 $(document).ready(function(){
-    $( ".project" ).each(function() {
-    var width = $(this).find("p#status").text();
-    console.log("current width:" + width);
-    width = (width/100)*90;
-    console.log("new width:" + width);
-     $(this).find(".projectprogressbar").css("width", width+"vw");
+
+    
+         $( ".project" ).each(function() {
+            var x = 0;
+            var y = 0;
+            var stagewidth = 0;
+            var progresswhitewidth = 0;
+            var status = 0;
+
+            $(this).find(".progressbar_space").each(function(){
+                x++;
+            });
+            
+            stagewidth = (90/x);
+            $(this).find(".progressbar_space").css("width", stagewidth+"vw");
+        
+            $(this).find(".unfilled").each(function(){
+               y++; 
+            });
+            
+            
+            status = 100-$(this).find(".status_num").text();
+            progresswhitewidth = (stagewidth*y) + ((status/100)*stagewidth);
+            $(this).find(".progress_white").css("width", progresswhitewidth+"vw");
+         });
     });
-});

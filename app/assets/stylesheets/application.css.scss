@@ -152,7 +152,7 @@ nav li{
 .sort{
     @include topline;
     padding: 1em 0;
-    margin-bottom: 4em;
+    margin-bottom: 2em;
 
     h5{
         display: inline;
@@ -169,8 +169,43 @@ nav li{
     @extend .sort;
 }
 
+.heading{
+    border-bottom: 1px;
+    margin-bottom: 0;
+    font-weight: bold;
+
+    .projectinfo{
+        #projnumber{
+            font-size: 1em;
+            padding: 1.5em 0;
+            display: inline-block;
+            overflow: hidden;
+        }   
+    }
+
+    .teammmemberinfo{
+        p{
+            font-size: 1em;
+            padding: 1.5em 0;
+            font-weight: bold;
+        }
+        
+        p#firstname{
+            margin-left: 10vw;
+            text-transform: none;
+            font-weight: 700;
+        }
+    
+        p#numproj{
+          float: right;
+          margin-right: 5vw;
+          font-weight: 700;
+          text-align: center;
+        }
+    }
+}
+
 .buttons{
-    margin-right: 2em;
     float: right;
     
     li{

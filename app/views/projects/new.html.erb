@@ -46,11 +46,23 @@
         </div>
         
         <div class="input">
-          <%= label_tag "stage", nil, :class => "formlabel" %>
+          <%= label_tag "stage", "Current Stage", :class => "formlabel" %>
           <%= f.select(:stage, @stages)%><br>
         </div>
+        
+        <div class = "allstage_input"> 
+        <%= label_tag "allstages", "Select the Stages that Apply for this Project", :class => "formlabel"   %>
+            <% @stages.each do |s| %>
+              <div class="checkselection">
+                <%= check_box_tag "allstages[]", s%>
+                <%= label_tag s %><br>
+              </div>
+            <% end %>
+        </ul>
+      </div> 
+      
     </section>
-    
+  
     <section class = "teaminfo half">
       <div class="input">
         <%= label_tag "Project Manager", "Project Manager", :class => "formlabel"  %>
@@ -74,11 +86,11 @@
     
      </section> 
   
-  </div> 
+  
       <div class="actions container"> 
       <%= f.submit "Create" %> 
     </div> 
-    
+  
+  </div> 
   <% end %>
-</div>
 </div>

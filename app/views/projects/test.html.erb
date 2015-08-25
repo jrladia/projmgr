@@ -1,4 +1,4 @@
-<div class="container">
+<div class="test container">
 <h1>Projects by <%= @description %></h1>
 <ul class = "sort">
         <h5> Sort Options </h5>
@@ -29,21 +29,18 @@
         <section class = "progressbar">
             <% marker = p.stage %>
             <% counter = 0 %>
-            <% keys = p.allstages.to_s.gsub(/\p{Ps}/, "").gsub(/\p{Pe}/, "").split(", ") %>
-            <% keys.each do |k| %>
-                <% k.gsub!(/["]/,"") %> 
-            <% end %>
-            <% while keys[counter]!=marker && counter<keys.length do %>
+            <% keys = @stages.keys %>
+            <% while keys[counter] != marker do %>
                 <% counter+=1 %>
             <% end %>
             
             <% unless p.allstages.nil? || p.allstages.gsub(/\s+/, "") == "" %>
                 <% p.allstages.to_s.gsub(/\p{Ps}/, "").gsub(/\p{Pe}/, "").split(", ").each do |x| %>
                     
-                    <%if counter >= 0%>
+                    <%if counter>=0%>
                         <div class = "progressbar_space" style = "background: <%= @stages[x.gsub(/["]/,"")] %>"></div>
-                    <% else %>
-                        <div class = "progressbar_space unfilled" style = "border-right: 1px solid #626366;"></div>
+                    <%else%>
+                        <div class = "progressbar_space unfilled" style = "border-right: 1px solid #black;"></div>
                     <%end%>
                     
                     <% counter-=1%>

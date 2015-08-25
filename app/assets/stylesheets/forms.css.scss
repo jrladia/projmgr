@@ -136,53 +136,52 @@ textarea:focus, text:focus, input:focus, button:focus {
 
 //edit, delete, show buttons
 .buttons{
+  margin: 0;
   
-  background: $darkgray;
-
   li{
     display: inline;
   }
   
   .editbutton{
-    width: 5em;
-    height: 5em;
+    width: 3em;
+    height: 3em;
     background: url('http://www.republicarchitecture.ca/images/projmgr/editbuttons.png');
-    background-size: 15em 10em;
+    background-size: 9em 6em;
     border: none;
     white-space: nowrap;
     overflow: hidden;
     text-indent: -9999em;
     cursor: pointer;
-    margin: 0.5em;
+    margin: 0.25em;
   }
   
   .show{
     @extend .editbutton;
-    background-position: 0 5em;
+    background-position: 0 0;
   }
   
   .show:hover{
     @extend .editbutton;
-    background-position: 0 0;
+    background-position: 0 3em;
   }
   
   .edit{
     @extend .editbutton;
-    background-position: -5em 5em;
+    background-position: -3em 0;
   }
   
   .edit:hover{
     @extend .editbutton;
-    background-position: -5em 0;
+    background-position: -3em 3em;
   }
   
   .delete{
     @extend .editbutton;
-    background-position: -10em 5em;
+    background-position: -6em 0;
   }
   
   .delete:hover{
     @extend .editbutton;
-    background-position: -10em 0;
+    background-position: -6em 3em;
   }
 }

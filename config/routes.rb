@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   patch 'projects/:projnumber/' => 'projects#update'
   post 'projects/create' => 'projects#create'
   delete 'projects/:projnumber/' => 'projects#destroy'
+  get 'test/' => 'projects#test', as: :test_index
   
   get 'teammembers/' => 'teammembers#index', as: :index_teammembers
   get 'teammembers/new' => 'teammembers#new'

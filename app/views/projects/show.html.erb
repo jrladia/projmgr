@@ -71,7 +71,7 @@
             <tr id = "prod">
                 <td class = "category"><h5>Production Team</h5></td>
                 <td><p>
-                   <% unless @prod.nil? || @prod == ""%>
+                   <% unless @prod.nil? || @prod == "" || @prod == [] %>
                         <% @prod.to_s.gsub(/\W/, " ").split(" ").each  do |x| %>
                             <%= image_tag Teammember.find_by_first_name(x).img, :class => 'headshot small'%>
                             <%= x %>

@@ -19,35 +19,17 @@
     }
         
     .projectinfo, .teammemberinfo{
-      border-radius: $border-radius;
+      background: $lightgray;
       height: $projheight;
       overflow: hidden;
       position: relative;
 
-        .projectprogressbar{
-         height: 100%;
-         opacity: 0.75;
-         position: absolute;
-         top: 0;
-         left: 0;
-         z-index: -1;
-         }
-         
-         .projectbackground{
-         height: 100%;
-         width: 100%;
-         background: $gray;
-         position: absolute;
-         top: 0;
-         left: 0;
-         z-index: -2;
-         }
     
         p{
           display: inline-block;
           overflow: hidden;
           padding: 1.5em 0;
-          width: 12vw;
+          width: $fullwidth/5;
           white-space: nowrap;
           z-index: 100;
         }
@@ -55,17 +37,43 @@
         #projnumber{
           padding: 0.5em 0;
           font-weight: 700;
-          width: 7vw;
-          text-align: center;
+          width: 5vw;
+          text-align: left;
+          margin-left: 1em;
           font-size: 2em;
         }
         
         #projname{
-          width: 45vw;
+          width: 25vw;
         }
 
-      
+        p#status{
+        width: 20vw;
+        text-align: left;
+        }
+        
     }
+    
+    .progressbar{
+          height: 1em;
+          position: relative;  
+          
+          .progressbar_space{
+            background: gray;
+            float: left;
+            height: 1em;
+            box-sizing:border-box;
+          }
+          
+          .progress_white{
+            position: absolute;
+            right: 0;
+            height: 1em;
+            background: url(http://www.republicarchitecture.ca/images/projmgr/pb.png) white;
+            background-size: 3em 3em;
+            opacity: 0.75;
+          }
+        }
     
     .teaminfo{
       
@@ -110,14 +118,11 @@
         
       }
     }
-    
-    //show, edit, delete buttons
-    .buttons{
-      margin: 1em 1em 0 0;
-      height: 100%;
-      padding: 0.5em;
-      border-radius: $border-radius;
-    }
+
+  .buttons{
+    margin: 0.75em 1em 0.75em;
+    padding: 0;
+  }
 }
 
 
@@ -175,7 +180,52 @@
   .project{
     margin: 0;
     margin-right: $fullwidth / 100;
-    
-    
   }
+  
+  
 }
+
+/*
+  .project{
+    border-radius: 0px;
+  
+    .projectinfo{
+      background: $lightgray;
+      p{
+        width: $fullwidth/5;
+        
+      }
+      
+      p#projnumber{
+        text-align: left;
+        margin-left: 1em;
+      }
+      
+      p#status{
+        width: 20vw;
+        text-align: left;
+      }
+      
+    }
+    
+    .progressbar{
+      height: 1em;
+      position: relative;
+      
+      .progressbar_space{
+        background: gray;
+        float: left;
+        height: 1em;
+        box-sizing:border-box;
+      }
+      
+      .progress_white{
+        position: absolute;
+        right: 0;
+        height: 1em;
+        background: white;
+        opacity: 0.55;
+      }
+    }
+  }
+*/

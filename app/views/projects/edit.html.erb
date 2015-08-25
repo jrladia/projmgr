@@ -49,6 +49,25 @@
           <%= label_tag "stage", nil, :class => "formlabel" %>
           <%= f.select(:stage, @stages)%><br>
         </div>
+        
+         <div class = "allstage_input"> 
+        <%= label_tag "allstages", "Select the Stages that Apply for this Project", :class => "formlabel"   %>
+            <% @stages.each do |s| %>
+            <% active = false %>
+              <div class="checkselection">
+                <% @project.allstages.to_s.gsub(/\p{Ps}/, "").gsub(/\p{Pe}/, "").split(", ").each do |x| %>
+                      <% if x.gsub(/["]/,"") == s %>
+                        <% active = true %>
+                      <% end %>
+                <% end %>
+                
+                <%= check_box_tag "allstages[]", s, active%>
+                
+                <%= label_tag s %><br>
+              </div>
+            <% end %>
+        </ul>
+      </div>
       </section>
     
     <section class = "teaminfo half">
@@ -66,7 +85,8 @@
         <%= label_tag "Production Team", "Production Team", :class => "formlabel"   %>
         
         <% @allteammembers.each do |t| %>
-             <div class="checkselection", style = "background: <%=t.bgcolour%>">    
+             <div class="checkselection", style = "background: <%=t.bgcolour%>">
+              <%= hidden_field_tag 'project[prod][]', nil %>    
               <%= check_box_tag 'project[prod][]', t.first_name, @prod.include?(t.first_name), {:checked => @active} %>
               <%= label_tag t.first_name %><br>
             </div>
